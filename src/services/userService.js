@@ -110,7 +110,7 @@ let createNewUser = (data) => {
       if (check === true) {
         resolve({
           errCode: 1,
-          message: 'Email is already in used, please try other email!'
+          errMessage: 'Email is already in used, please try other email!'
         });
       }
       else {
@@ -167,10 +167,11 @@ let deleteUser = (userId) => {
 let updateUserData = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
+      // console.log('data nodejs', data);
       if (!data.id) {
         resolve({
           errCode: 2,
-          message: 'Missing required parameters!'
+          errMessage: 'Missing required parameters!'
         })
       }
       let user = await db.User.findOne({
@@ -191,7 +192,7 @@ let updateUserData = (data) => {
       } else {
         resolve({
           errCode: 1,
-          message: `User's not found!`
+          errMessage: `User's not found!`
         });
       }
     } catch (e) {
